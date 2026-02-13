@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Selamat Hari Valentine - Ayah & Ibu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #ffb6d9 0%, #ffffff 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            padding-top: max(15px, env(safe-area-inset-top));
+            padding-bottom: max(15px, env(safe-area-inset-bottom));
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .lang-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: 2px solid #e75480;
+            border-radius: 25px;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-size: 0.9em;
+            color: #e75480;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .lang-toggle:hover {
+            background: #e75480;
+            color: white;
+        }
+
+        @media (max-width: 480px) {
+            .lang-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
+        }
+
+        .header {
+            margin-bottom: 30px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: clamp(2em, 8vw, 3.5em);
+            color: #e75480;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            word-spacing: 100vw;
+        }
+
+        .subtitle {
+            font-size: clamp(1em, 5vw, 1.5em);
+            color: #e75480;
+            font-style: italic;
+        }
+
+        .heart-container {
+            margin: 25px 0 30px;
+            display: flex;
+            justify-content: center;
+            gap: clamp(15px, 5vw, 30px);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .heart {
+            width: clamp(50px, 15vw, 80px);
+            height: clamp(50px, 15vw, 80px);
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: clamp(20px, 5vw, 40px);
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .message-box h2 {
+            color: #e75480;
+            font-size: clamp(1.5em, 6vw, 2em);
+            margin-bottom: 18px;
+        }
+
+        .message-box p {
+            color: #333;
+            font-size: clamp(0.95em, 3.5vw, 1.1em);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .reasons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: clamp(15px, 3vw, 20px);
+            margin-top: 25px;
+            text-align: left;
+        }
+
+        .reason {
+            background: linear-gradient(135deg, #ffb6d9 0%, #fff0f5 100%);
+            color: #e75480;
+            padding: clamp(15px, 4vw, 20px);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .reason:active {
+            transform: translateY(-3px);
+        }
+
+        @media (hover: hover) {
+            .reason:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        .reason h3 {
+            margin-bottom: 8px;
+            font-size: clamp(1em, 4vw, 1.3em);
+        }
+
+        .reason p {
+            font-size: clamp(0.85em, 3vw, 0.95em);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .footer {
+            color: #e75480;
+            font-size: clamp(1em, 4vw, 1.2em);
+            margin-top: 35px;
+            animation: fadeIn 1.2s ease-out;
+            padding-bottom: 20px;
+        }
+
+        .footer-heart {
+            font-size: 1.5em;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+                padding-top: max(10px, env(safe-area-inset-top));
+            }
+
+            .header {
+                margin-bottom: 20px;
+            }
+
+            .message-box {
+                margin-bottom: 20px;
+            }
+
+            .footer {
+                margin-top: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="lang-toggle" onclick="toggleLanguage()">🇬🇧 English</button>
+
+    <div class="container">
+        <div class="header">
+            <h1 id="title">Selamat Hari Valentine</h1>
+            <p class="subtitle" id="subtitle">Untuk orang tua yang paling luar biasa</p>
+        </div>
+
+        <div class="heart-container">
+            <svg class="heart" viewBox="0 0 100 100">
+                <path d="M50,90 C20,75 5,60 5,45 C5,30 15,20 27,20 C35,20 42,25 50,35 C58,25 65,20 73,20 C85,20 95,30 95,45 C95,60 80,75 50,90 Z" fill="#ff69b4" />
+            </svg>
+            <svg class="heart" viewBox="0 0 100 100">
+                <path d="M50,90 C20,75 5,60 5,45 C5,30 15,20 27,20 C35,20 42,25 50,35 C58,25 65,20 73,20 C85,20 95,30 95,45 C95,60 80,75 50,90 Z" fill="#ff1493" />
+            </svg>
+        </div>
+
+        <div class="message-box">
+            <h2 id="msg-title">Pesan Khusus</h2>
+            <p id="msg-1">Di Hari Valentine ini, kami merayakan bukan hanya cinta antara dua orang, tetapi contoh indah cinta dan komitmen yang telah kalian tunjukkan kepada kami sepanjang hidup.</p>
+            
+            <p id="msg-2">Setiap tawa kalian, dan dukungan yang tidak pernah goyah berarti segalanya. Terima kasih telah menjadi teladan yang luar biasa dan orang tua terbaik yang bisa kami minta.</p>
+
+            <div class="reasons">
+                <div class="reason">
+                    <h3>� <span id="r1-title">Dedikasi untuk Keluarga</span></h3>
+                    <p id="r1-text">Setiap hari kalian tunjukkan cinta melalui tindakan nyata dan perhatian penuh</p>
+                </div>
+                <div class="reason">
+                    <h3>🤝 <span id="r2-title">Kekuatan Bersama</span></h3>
+                    <p id="r2-text">Saling mendukung dalam setiap tantangan dan merayakan setiap kesuksesan</p>
+                </div>
+                <div class="reason">
+                    <h3>🌱 <span id="r3-title">Kebijaksanaan dan Kesabaran</span></h3>
+                    <p id="r3-text">Cara kalian mengajarkan nilai-nilai baik dengan teladan yang konsisten</p>
+                </div>
+                <div class="reason">
+                    <h3>💕 <span id="r4-title">Cinta yang Abadi</span></h3>
+                    <p id="r4-text">Cinta yang terus bertumbuh dan menginspirasi kami selalu</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <span id="footer-text">Dengan semua cinta saya,</span> <span class="footer-heart">❤️</span>
+        </div>
+    </div>
+
+    <script>
+        let isIndonesian = true;
+
+        const translations = {
+            id: {
+                title: "Selamat Hari Valentine",
+                subtitle: "Untuk orang tua yang paling luar biasa",
+                'msg-title': "Pesan Khusus",
+                'msg-1': "Di Hari Valentine ini, kami merayakan  Ayah dan kasih sayang Ibu yang telah membangun rumah penuh cinta untuk kami. Perjalanan kalian bersama sebagai pasangan dan sebagai orang tua adalah bukti nyata komitmen sejati.",
+                'msg-2': "Setiap pengorbanan, setiap momen kebersamaan, dan setiap nasihat dari kalian telah membentuk siapa kami hari ini. Terima kasih telah menunjukkan apa arti benar-benar mencintai dan memprioritaskan keluarga. Kalian adalah bukti nyata bahwa cinta sejati tumbuh seiring waktu.",
+                'r1-title': "Dedikasi untuk Keluarga",
+                'r1-text': "Setiap hari kalian tunjukkan cinta melalui tindakan nyata dan perhatian penuh",
+                'r2-title': "Kekuatan Bersama",
+                'r2-text': "Saling mendukung dalam setiap tantangan dan merayakan setiap kesuksesan",
+                'r3-title': "Kebijaksanaan dan Kesabaran",
+                'r3-text': "Cara kalian mengajarkan nilai-nilai baik dengan teladan yang konsisten",
+                'r4-title': "Cinta yang Abadi",
+                'r4-text': "Cinta yang terus bertumbuh dan menginspirasi kami selalu",
+                'footer-text': "Dengan semua cinta saya,",
+                'lang-btn': "🇬🇧 English"
+            },
+            en: {
+                title: "Happy Valentine's Day",
+                subtitle: "To the most amazing parents",
+                'msg-title': "A Special Message",
+                'msg-1': "This Valentine's Day, we celebrate Dad's leadership and Mom's tenderness that have built our home with love. Your journey together as a couple and as parents is proof of true commitment.",
+                'msg-2': "Every sacrifice, every moment together, and every piece of advice you've given us shaped who we are today. Thank you for showing us what it truly means to love and prioritize family. You are proof that real love grows stronger over time.",
+                'r1-title': "Dedication to Family",
+                'r1-text': "Every day you show your love through real actions and genuine care",
+                'r2-title': "Strength Together",
+                'r2-text': "Supporting each other through every challenge and celebrating every victory",
+                'r3-title': "Wisdom and Patience",
+                'r3-text': "The way you teach good values through consistent example",
+                'r4-title': "Everlasting Love",
+                'r4-text': "Love that continues to grow and inspire us always",
+                'footer-text': "With all my love,",
+                'lang-btn': "🇮🇩 Indonesia"
+            }
+        };
+
+        function toggleLanguage() {
+            isIndonesian = !isIndonesian;
+            const lang = isIndonesian ? 'id' : 'en';
+            const trans = translations[lang];
+
+            document.getElementById('title').textContent = trans.title;
+            document.getElementById('subtitle').textContent = trans.subtitle;
+            document.getElementById('msg-title').textContent = trans['msg-title'];
+            document.getElementById('msg-1').textContent = trans['msg-1'];
+            document.getElementById('msg-2').textContent = trans['msg-2'];
+            document.getElementById('r1-title').textContent = trans['r1-title'];
+            document.getElementById('r1-text').textContent = trans['r1-text'];
+            document.getElementById('r2-title').textContent = trans['r2-title'];
+            document.getElementById('r2-text').textContent = trans['r2-text'];
+            document.getElementById('r3-title').textContent = trans['r3-title'];
+            document.getElementById('r3-text').textContent = trans['r3-text'];
+            document.getElementById('r4-title').textContent = trans['r4-title'];
+            document.getElementById('r4-text').textContent = trans['r4-text'];
+            document.getElementById('footer-text').textContent = trans['footer-text'];
+            document.querySelector('.lang-toggle').textContent = trans['lang-btn'];
+        }
+    </script>
+</body>
+</html>    
